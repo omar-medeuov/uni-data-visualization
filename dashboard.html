@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Study Dashboard</title>
+
+    <!-- Load D3.js for the network graph -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Load Chart.js for pie and line charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        svg {
+            background: #fafafa;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Student Study Dashboard</h1>
+
+<div class="dashboard">
+    <!-- Network Graph Card -->
+    <div class="card">
+        <h2>Student Collaboration Network</h2>
+        <svg id="graph" width="500" height="400"></svg>
+    </div>
+
+    <!-- Pie Chart Card -->
+    <div class="card">
+        <h2>Study Location Distribution</h2>
+        <canvas id="pieChart"></canvas>
+    </div>
+
+    <!-- Line Chart Card -->
+    <div class="card">
+        <h2>Weekly Study Hours</h2>
+        <canvas id="lineChart"></canvas>
+    </div>
+</div>
+
+<script>
+// ====================
+// 1) NETWORK GRAPH (D3.js)
+// Shows which students collaborated on projects
+// ====================
+
+// Define 5 nodes (students)
+const nodes = [
+    { id: "Alice" },
+    { id: "Bob" },
+    { id: "Carol" },
+    { id: "David" },
+    { id: "Emma" }
+];
+
+// Define 6 connections (collaborations)
+const links = [
+    { source: "Alice", target: "Bob", weight: 3 },
+    { source: "Alice", target: "Carol", weight: 2 },
+    { source: "Bob", target: "David", weight: 4 },
+    { source: "Carol", target: "Emma", weight: 2 },
+    { source: "David", target: "Emma", weight: 1 },
+    { source: "Alice", target: "Emma", weight: 3 }
+];
+
+// Select the SVG element
+const svg = d3.select("#graph");
+const width = 500;
+const height = 400;
+
+// Create force simulation
+const simulation = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.id).distance(120))
+    .force("charge", d3.forceManyBody().strength(-400))
+    .force("center", d3.forceCenter(width / 2, height / 2));
+
+// Draw the links (lines)
+const link = svg.append("g")
+    .selectAll("line")
+    .data(links)
+    .enter()
+    .append("line")
+    .attr("stroke", "#999")
+    .attr("stroke-width", d => d.weight);
+
+// Draw the nodes (circles)
+const node = svg.append("g")
+    .selectAll("circle")
+    .data(nodes)
+    .enter()
+    .append("circle")
+    .attr("r", 20)
+    .attr("fill", "#4CAF50");
+
+// Add labels to nodes
+const label = svg.append("g")
+    .selectAll("text")
+    .data(nodes)
+    .enter()
+    .append("text")
+    .text(d => d.id)
+    .attr("font-size", "12px")
+    .attr("text-anchor", "middle")
+    .attr("dy", 4);
+
+// Update positions on each tick
+simulation.on("tick", () => {
+    link
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y);
+
+    node
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y);
+
+    label
+        .attr("x", d => d.x)
+        .attr("y", d => d.y);
+});
+
+// ====================
+// 2) PIE CHART (Chart.js)
+// Shows where students prefer to study
+// ====================
+
+new Chart(document.getElementById("pieChart"), {
+    type: "pie",
+    data: {
+        labels: ["Library (45%)", "Home (35%)", "Cafe (20%)"],
+        datasets: [{
+            data: [45, 35, 20],
+            backgroundColor: ["#3498db", "#2ecc71", "#e74c3c"]
+        }]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: "Where Students Study"
+            }
+        }
+    }
+});
+
+// ====================
+// 3) LINE CHART (Chart.js)
+// Shows weekly study hours for two subjects
+// ====================
+
+new Chart(document.getElementById("lineChart"), {
+    type: "line",
+    data: {
+        labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7"],
+        datasets: [
+            {
+                label: "Math",
+                data: [5, 6, 4, 7, 8, 6, 9],
+                borderColor: "#3498db",
+                fill: false
+            },
+            {
+                label: "Programming",
+                data: [3, 5, 6, 8, 7, 9, 10],
+                borderColor: "#e74c3c",
+                fill: false
+            }
+        ]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: "Study Hours per Week"
+            }
+        },
+        scales: {
+            x: {
+                title: { display: true, text: "Week" }
+            },
+            y: {
+                title: { display: true, text: "Hours" }
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
