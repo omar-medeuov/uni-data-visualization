@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>My First HTML Page</h1>
+<p>I am a 4th year student. I am taking this Data Visualization class</p>
+
+<h2>About me</h2>
+<h3>My Hobbies</h3>
+<h4>My Favorite books</h4>
+
+<!--Part 2-->
+    <p>
+<b>Bold</b>
+<i>Italic</i>
+        <u>Underlined</u>
+        
+    </p>
+<hr>
+<p>Line <br> Break</p>
+
+<p>Line Break</p>
+
+<!--The page is about me as a student-->
+
+
+<!--Part 3-->
+
+<!-- Unordered list of hobbies -->
+<h3>My Hobbies List</h3>
+<ul>
+    <li>Reading</li>
+    <li>Coding</li>
+    <li>Playing video games</li>
+    <li>Watching movies</li>
+    <li>Hiking</li>
+</ul>
+
+<!-- Ordered list of steps to learn programming -->
+<h3>Steps to Learn Programming</h3>
+<ol>
+    <li>Choose a programming language to start with</li>
+    <li>Set up your development environment</li>
+    <li>Learn the basic syntax and concepts</li>
+    <li>Practice by building small projects</li>
+    <li>Read documentation and learn from tutorials</li>
+</ol>
+
+<!-- Nested list of subjects and topics -->
+<h3>Subjects and Topics</h3>
+<ul>
+    <li>Programming
+        <ul>
+            <li>Python</li>
+            <li>JavaScript</li>
+        </ul>
+    </li>
+    <li>Mathematics
+        <ul>
+            <li>Calculus</li>
+            <li>Linear Algebra</li>
+        </ul>
+    </li>
+    <li>Physics
+        <ul>
+            <li>Mechanics</li>
+            <li>Thermodynamics</li>
+        </ul>
+    </li>
+</ul>
+
+<!-- Link to W3Schools opening in new tab -->
+<p><a href="https://www.w3schools.com/html/" target="_blank">Learn HTML on W3Schools</a></p>
+
+<!-- Email link -->
+<p>Contact me: <a href="mailto:student@example.com">student@example.com</a></p>
+
+
+<!--Part 4 - Images and Basic Attributes-->
+
+<p>Here is a paragraph before the image.</p>
+
+<!-- Image with src, alt, width, and height attributes -->
+<img src="https://via.placeholder.com/300x200" alt="Placeholder image" width="300" height="200">
+
+<p>This is a caption for the image above.</p>
+
+<p>Here is a paragraph after the image.</p>
+
+<!-- Clickable image that opens a website -->
+<a href="https://www.w3schools.com" target="_blank">
+    <img src="https://via.placeholder.com/150x100" alt="Click to visit W3Schools" width="150" height="100">
+</a>
+
+
+<!--Part 5 - Tables Basic-->
+
+<h2>Basic Table</h2>
+<table border="1" cellpadding="10" cellspacing="5">
+    <caption>People Information</caption>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+    </tr>
+    <tr>
+        <td>John Smith</td>
+        <td>25</td>
+        <td>New York</td>
+    </tr>
+    <tr>
+        <td>Jane Doe</td>
+        <td>30</td>
+        <td>Los Angeles</td>
+    </tr>
+    <tr>
+        <td>Bob Johnson</td>
+        <td>22</td>
+        <td>Chicago</td>
+    </tr>
+    <tr>
+        <td>Alice Brown</td>
+        <td>28</td>
+        <td>Houston</td>
+    </tr>
+</table>
+
+
+<!--Part 6 - Tables Advanced Structure-->
+
+<h2>Student Grades Table</h2>
+<table border="1" cellpadding="10" cellspacing="0">
+    <caption>Student Grades Report</caption>
+    <thead>
+        <tr>
+            <th style="text-align: center;">Student Name</th>
+            <th style="text-align: center;">Subject</th>
+            <th colspan="2" style="text-align: center;">Exam Scores</th>
+            <th style="text-align: center;">Total</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th style="text-align: center;">Midterm</th>
+            <th style="text-align: center;">Final</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="2">John Smith</td>
+            <td>Math</td>
+            <td style="text-align: right;">85</td>
+            <td style="text-align: right;">90</td>
+            <td style="text-align: right;">175</td>
+        </tr>
+        <tr>
+            <td>Physics</td>
+            <td style="text-align: right;">78</td>
+            <td style="text-align: right;">82</td>
+            <td style="text-align: right;">160</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Jane Doe</td>
+            <td>Math</td>
+            <td style="text-align: right;">92</td>
+            <td style="text-align: right;">88</td>
+            <td style="text-align: right;">180</td>
+        </tr>
+        <tr>
+            <td>Physics</td>
+            <td style="text-align: right;">80</td>
+            <td style="text-align: right;">85</td>
+            <td style="text-align: right;">165</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5" style="text-align: center;"><strong>End of Grades Report</strong></td>
+        </tr>
+    </tfoot>
+</table>
+
+
+</body>
+</html>
